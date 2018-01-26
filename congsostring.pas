@@ -1,58 +1,78 @@
-program tongchuso;
-var so:ansistring;
-temp:integer;
-function congso(so1:string;so2:string):string;
-var temp,temp1,temp2,temp3,i,k,l:longint;
-tempst,xau1:ansistring;
-sodu:integer;
-xau,st,sodust:ansistring;
-begin
-k:=0 ;
-temp3:=0;
-if (length(so2)>length(so1)) then begin tempst:=so1;
-so1:=so2;
-so2:=tempst;
-end;
-i:=length(so1)-length(so2);
-while (length(so1)-i>=1) do
-begin
-temp:=0;
-VAL(so1[length(so1)-k],temp1);
-VAL(so2[length(so1)-i],temp2);
-k:=k+1;
-temp:=temp1+temp2+temp3;
-if (temp>10) then begin
-temp:=temp-10;
-STR(temp,xau);
-congso:=congso+xau;
-temp3:=1;
-end
-else begin
-temp3:=0;
-STR(temp,xau);
-congso:=congso+xau;
-end;
-i:=i+1;
-end;
-if (length(so1)>length(so2)) then
-begin
-i:=length(so1)-length(so2);
-st:=copy(so1,1,i);
-VAL(st,sodu);
-sodu:=sodu+temp;
-STR(sodu,sodust);
-congso:=congso+ sodust;
-end
-else if (length(so2)-length(so1)>0) then begin
-i:=length(so2)-length(so1);
-st:=copy(so2,1,i);
-VAL(st,sodu);
-sodu:=sodu+temp;
-congso:=congso+ sodust;
-end;
-end;
-begin
-  writeln(congso('131','22'));
-  readln();
-  end.
 
+
+program tongchuso; 
+
+var
+  so1,so2: ansistring;
+  temp: integer;
+
+function congso(so1: string;
+so2: string) : string; 
+
+var
+  temp, temp1, temp2, temp3, i, k, l: longint;
+  tempst, xau1: ansistring;
+  sodu, x: integer;
+  xau, st, sodust: ansistring;
+
+
+begin
+  k := 0;
+  temp3 := 0;
+  if (length(so2) > length(so1)) then
+    begin
+      tempst := so1;
+      so1 := so2;
+      so2 := tempst;
+    end ;
+  i := length(so1) - length(so2);
+  while (length(so1) - i >= 1) do 
+    begin
+      VAL(so1[length(so1) - k], temp1, x);
+      VAL(so2[length(so1) - i], temp2, x);
+      k := k + 1;
+      temp := temp1 + temp2 + temp3;
+      if (temp >= 10) then
+        begin
+          temp := temp mod 10;
+          STR(temp, xau);
+          congso := xau+congso;
+          temp3 := 1;
+        end 
+      else 
+        begin
+          temp3 := 0;
+          STR(temp, xau);
+          congso :=xau+congso;
+        end;
+      i := i + 1;
+      temp:=0
+    end;
+  if (length(so1) > length(so2)) then
+    begin
+      i := length(so1) - length(so2);
+      st := copy(so1, 1, i);
+      VAL(st, sodu, x);
+      sodu := sodu + temp3;
+      STR(sodu, sodust);
+      congso := sodust+congso;
+    end 
+  else if (length(so2) - length(so1) > 0) then
+    begin
+      i := length(so2) - length(so1);
+      st := copy(so2, 1, i);
+      VAL(st, sodu, x);
+      sodu := sodu + temp3;
+      congso := sodust + congso;
+    end ;
+end; 
+
+begin
+writeln('nhập số 1:');
+readln(so1);
+writeln('nhập số 2');
+readln(so2);
+  writeln(congso(so1,so2));
+  readln();
+  
+end.
