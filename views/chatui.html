@@ -11,7 +11,7 @@
     <input class="name" id="name"></input>
     <button type="button" class="name" id="newUser">Submit</button>
     <div class="chat" id="online" style="display:none" ></div>
-    <div class="chat" id="name" style="display:none"></div>
+    <div class="chat" id="welcome" style="display:none"></div>
     <input class="chat" id="sendMessage" style="display:none"></input>
     <div class="chat" id="showMessage" style="display:none"></div> 
 <script>
@@ -22,7 +22,7 @@ $(document).ready(function(){
                         var name=$("#name").val();
                         $(".name").remove();
                         $(".chat").show(function () {
-                        $("#name").val("<h1>Welcome To My Chat App, "+name+" !!!<h1>")
+                        $("#welcome").val("<h1>Welcome To My Chat App, "+name+" !!!<h1>")
                         });
                     socket.emit('newUser',name);
                     });
